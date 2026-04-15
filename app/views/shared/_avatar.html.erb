@@ -1,0 +1,14 @@
+<%# app/views/shared/_avatar.html.erb %>
+<%# Uso: <%= render "shared/avatar", user: comment.user, size: 32 %>
+
+<%
+  size = local_assigns[:size] || 32
+  name = user.email.first
+  background = local_assigns[:background] || "3498db"
+%>
+
+<img src="https://ui-avatars.com/api/?name=<%= name %>&background=<%= background %>&color=fff&size=<%= size %>" 
+     alt="Avatar de <%= user.email %>" 
+     class="avatar avatar-<%= size %>"
+     width="<%= size %>"
+     height="<%= size %>">

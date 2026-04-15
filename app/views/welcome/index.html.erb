@@ -1,0 +1,91 @@
+<h1>Bem-vindo ao Meu App Rails</h1>
+
+<%# ========== FORMULÁRIO DE BUSCA ========== %>
+<div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+  <%= form_tag root_path, method: :get, style: "display: flex; gap: 10px; flex-wrap: wrap;" do %>
+    <%= text_field_tag :search, params[:search], 
+        placeholder: "Buscar posts por título ou conteúdo...", 
+        style: "flex: 1; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-size: 1em; min-width: 200px;" %>
+    <%= submit_tag "Buscar", style: "background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;" %>
+    
+    <% if params[:search].present? %>
+      <%= link_to "Limpar busca", root_path(per_page: params[:per_page]), 
+          style: "background-color: #95a5a6; color: white; padding: 10px 15px; border-radius: 4px; text-decoration: none;" %>
+    <% end %>
+  <% end %>
+</div>
+
+<% if params[:search].present? %>
+  <div style="background-color: #e8f4fd; padding: 10px 15px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid #3498db;">
+    <p style="margin: 0;">
+      Resultados para: <strong>"<%= params[:search] %>"</strong> 
+      (<%= @posts.total_count %> posts encontrados)
+    </p>
+  </div>
+<% end %>
+
+<h2>Minhas Postagens</h2>
+
+<%# ========== INFORMAÇÃO DA PAGINAÇÃO ========== %>
+<div style="margin-bottom: 15px; padding: 10px; background-color: #e8f4fd; border-radius: 4px;">
+  <strong>
+    Mostrando página <%= @posts.current_page %> de <%= @posts.total_pages %> 
+    | Total: <%= @posts.total_count %> posts
+  </strong>
+</div>
+
+<%# Antes da lista de posts, adicione: %>
+<div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <strong>Posts por página:</strong>
+    <select onchange="window.location.href='<%= root_path %>?per_page='+this.value">
+      <option value="5" <%= 'selected' if params[:per_page].to_i == 5 %>>5</option>
+      <option value="10" <%= 'selected' if params[:per_page].to_i == 10 %>>10</option>
+      <option value="20" <%= 'selected' if params[:per_page].to_i == 20 %>>20</option>
+      <option value="50" <%= 'selected' if params[:per_page].to_i == 50 %>>50</option>
+    </select>
+  </div>
+  
+  <div>
+    <%= link_to "← Voltar", root_path, style: "color: #3498db;" %>
+  </div>
+</div>
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; background-color: #f9f9f9; border-radius: 4px;">
+      <h3><%= post.title %></h3>
+      <p><%= post.content.truncate(150) %></p>
+      <small>
+        Publicado por: <strong><%= post.user.email %></strong> | 
+        Criado em: <%= post.created_at.strftime("%d/%m/%Y %H:%M") %>
+      </small>
+      <div style="margin-top: 10px;">
+        <%= link_to "Ver Post Completo", post_path(post), class: "button-link" %>
+        
+        <% if user_signed_in? && post.user == current_user %>
+          <%= link_to "Editar", edit_post_path(post), class: "button-link", style: "background-color: #f39c12; margin-left: 5px;" %> 
+          <%= link_to "Excluir", post_path(post), 
+                      data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este post?" }, 
+                      class: "button-link", 
+                      style: "background-color: #e74c3c; margin-left: 5px;" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%# ========== LINKS DE PAGINAÇÃO ========== %>
+  <div style="margin-top: 20px; text-align: center;">
+    <%= paginate @posts %>
+  </div>
+  
+<% else %>
+  <p>Nenhum post encontrado. Que tal criar um?</p>
+<% end %>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to "Criar Novo Post", new_post_path, class: "button-link" %>
+<% else %>
+  <p><%= link_to "Faça login", new_user_session_path %> para criar um post.</p>
+<% end %>

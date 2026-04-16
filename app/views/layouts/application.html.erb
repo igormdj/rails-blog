@@ -38,6 +38,7 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;  /* ADICIONE ESTA LINHA */
       }
       
       .notice {
@@ -210,6 +211,123 @@
 .post-count strong {
   color: #2c3e50;
   font-size: 1.1em;
+/* ========== CENTRALIZAÇÃO COMPLETA ========== */
+
+/* Container principal já está centralizado, vamos ajustar o conteúdo */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center; /* CENTRALIZA TUDO DENTRO DO CONTAINER */
+}
+
+/* Mas os posts precisam ter texto alinhado à esquerda para leitura */
+.post-card, 
+.post-item,
+div[style*="border: 1px solid #ccc"] {
+  text-align: left;  /* Texto do post fica à esquerda para facilitar leitura */
+  margin: 0 auto 20px auto; /* Centraliza o card */
+  display: block;
+}
+
+/* Títulos centralizados */
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+/* Formulário de busca centralizado */
+.search-container {
+  text-align: center;
+}
+
+.search-form {
+  display: inline-block;
+  width: 100%;
+}
+
+.search-input-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Informações de paginação centralizadas */
+.pagination-info {
+  text-align: center;
+  display: block;
+}
+
+/* Controles de posts por página */
+.posts-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+/* Links de paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+/* Botão de novo post */
+.new-post-link {
+  text-align: center;
+  display: block;
+}
+
+/* Resultados da busca */
+.search-info {
+  text-align: center;
+}
+
+/* Navegação */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+  /* ========== CENTRALIZAÇÃO DOS CARDS DE POSTS ========== */
+
+/* Container que lista os posts */
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* CENTRALIZA OS CARDS HORIZONTALMENTE */
+  gap: 20px;
+}
+
+/* Cada card de post individual */
+.post-card {
+  width: 100%;
+  max-width: 650px;  /* Largura máxima do card */
+  margin: 0 auto;    /* Centraliza o card */
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Para telas pequenas (celular) */
+@media (max-width: 768px) {
+  .post-card {
+    max-width: 95%;  /* Ocupa 95% da tela no celular */
+    margin: 0 auto;
+  }
 }
     </style>
   </head>

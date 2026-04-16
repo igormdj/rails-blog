@@ -7,10 +7,12 @@ class WelcomeController < ApplicationController
       per_page = 10
     end
     
-    @posts = Post.search(params[:search])
-                  .order(created_at: :desc)
+    # Usando o scope :recentes para ordenar os posts por data de criação
+    @posts = Post.recentes
+                  .search(params[:search])
                   .page(params[:page])
                   .per(per_page)
+                  
     @search_term = params[:search]
   end
 end

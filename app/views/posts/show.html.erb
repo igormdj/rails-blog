@@ -1,6 +1,16 @@
 <div class="post-detail-container">
   <h1><%= @post.title %></h1>
 
+    <%# NOVO: EXIBIR TAGS %>
+  <% if @post.tags.any? %>
+    <div class="post-tags">
+      <strong>🏷️ Tags:</strong>
+      <% @post.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag), class: "tag" %>
+      <% end %>
+    </div>
+  <% end %>
+    
   <div class="post-content">
     <p><%= @post.content %></p>
     <small>Postado em: <%= @post.created_at.strftime("%d/%m/%Y %H:%M") %></small>

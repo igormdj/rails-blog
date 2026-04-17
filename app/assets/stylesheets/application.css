@@ -326,3 +326,64 @@ input[type="submit"]:hover {
         flex-direction: column;
     }
 }
+
+/* ========== ESTILOS PARA TAGS ========== */
+
+/* Container de tags */
+.post-tags {
+  margin: 15px 0;
+  text-align: center;
+}
+
+/* Link da tag */
+.tag {
+  display: inline-block;
+  background-color: #e8f4fd;
+  color: #3498db;
+  padding: 5px 12px;
+  margin: 0 5px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.tag:hover {
+  background-color: #3498db;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Badge de tag (para listagem) */
+.tag-badge {
+  display: inline-block;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  padding: 3px 10px;
+  margin: 0 3px;
+  border-radius: 15px;
+  font-size: 11px;
+}
+
+/* Nuvem de tags (para página de tags) */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.tag-cloud-item {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.tag-cloud-item:hover {
+  transform: scale(1.1);
+  background-color: #2980b9;
+}

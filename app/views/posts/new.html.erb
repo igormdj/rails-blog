@@ -1,33 +1,42 @@
-<h1> Novo Post </h1>
+<h1>Novo Post</h1>
 
 <%= form_with model: @post do |form| %>
 
-    <% if @post.errors.any? %>
-        <div id="error_explanation" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px; background-color: #ffe6e6; border-radius: 4px;">
-            <h2><%= pluralize(@post.errors.count, "erro") %> impediram este post de ser salvo:</h2>
-            <ul>
-                <% @post.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-
-
-    <div class="field">
-        <%= form.label :title, "Título" %>
-        <%= form.text_field :title, placeholder: "Digite o título do post" %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px; background-color: #ffe6e6; border-radius: 4px;">
+      <h2><%= pluralize(@post.errors.count, "erro") %> impediram este post de ser salvo:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="field">
-        <%= form.label :content, "Conteúdo" %>
-        <%= form.text_area :content, rows: 5, placeholder: "Digite o conteúdo do post" %>
-    </div>
+  <div class="field">
+    <%= form.label :title, "Título" %>
+    <%= form.text_field :title, placeholder: "Digite o título do post" %>
+  </div>
 
-    <div class="actions">
-        <%= form.submit "Criar Post" %>
-    </div>
+  <div class="field">
+    <%= form.label :content, "Conteúdo" %>
+    <%= form.text_area :content, rows: 5, placeholder: "Digite o conteúdo do post" %>
+  </div>
+
+  <!-- NOVO CAMPO DE TAGS -->
+  <div class="field">
+    <%= form.label :tag_list, "Tags (separadas por vírgula)" %>
+    <%= form.text_field :tag_list, value: @post.tag_list, 
+        placeholder: "Ex: ruby, rails, backend, dicas",
+        style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" %>
+    <small style="color: #666; display: block; margin-top: 5px;">
+      💡 Dica: Digite as tags separadas por vírgula. Exemplo: tecnologia, programação, rails
+    </small>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Post" %>
+  </div>
 <% end %>
 
 <%= link_to "Voltar", root_path, class: "back-link" %>

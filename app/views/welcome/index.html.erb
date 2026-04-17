@@ -54,6 +54,19 @@
       <% @posts.each do |post| %>
         <div class="post-card">
           <h3><%= post.title %></h3>
+
+            <%# NOVO: EXIBIR TAGS RESUMIDAS %>
+  <% if post.tags.any? %>
+    <div class="post-tags" style="margin: 10px 0;">
+      <% post.tags.first(3).each do |tag| %>
+        <span class="tag-badge"><%= tag.name %></span>
+      <% end %>
+      <% if post.tags.count > 3 %>
+        <span class="tag-badge">+<%= post.tags.count - 3 %></span>
+      <% end %>
+    </div>
+  <% end %>
+  
           <p><%= post.content.truncate(200) %></p>
           
           <div class="post-meta">

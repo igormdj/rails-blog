@@ -1,0 +1,35 @@
+<%= form_with(model: post, local: true) do |f| %>
+  <% if post.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(post.errors.count, "erro") %> impediram este post de ser salvo:</h2>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "Título" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "Conteúdo" %>
+    <%= f.text_area :content, rows: 10, class: "form-control" %>
+  </div>
+
+  <%# NOVO CAMPO: TAGS %>
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separadas por vírgula)" %>
+    <%= f.text_field :tag_list, value: post.tag_list, 
+        placeholder: "Ex: ruby, rails, backend", 
+        class: "form-control" %>
+    <small style="color: #666;">Digite as tags separadas por vírgula. Ex: tecnologia, programação, dicas</small>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<h1>📌 Nuvem de Tags</h1>
+
+<div class="tag-cloud">
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag), class: "tag-cloud-item" %>
+  <% end %>
+</div>
+
+<%= link_to "← Voltar", root_path, class: "back-link" %>

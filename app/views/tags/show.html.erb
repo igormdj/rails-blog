@@ -1,0 +1,21 @@
+<h1>Posts com tag: <span style="color: #3498db;">#<%= @tag.name %></span></h1>
+
+<% if @posts.any? %>
+  <div class="posts-list">
+    <% @posts.each do |post| %>
+      <div class="post-card">
+        <h3><%= link_to post.title, post_path(post) %></h3>
+        <p><%= post.content.truncate(150) %></p>
+        <div class="post-meta">
+          Publicado por: <%= post.user.email %> em <%= post.created_at.strftime("%d/%m/%Y") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <%= paginate @posts %>
+<% else %>
+  <p>Nenhum post encontrado com esta tag.</p>
+<% end %>
+
+<%= link_to "← Ver todas as tags", tags_path, class: "back-link" %>

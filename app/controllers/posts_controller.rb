@@ -7,12 +7,16 @@ class PostsController < ApplicationController
         @posts = Post.recentes.page(params[:page]).per(10)
     end
 
+    def show
+    end
+    
     def new
         @post = Post.new
     end
 
     def create
         @post = current_user.posts.build(post_params)
+
         if @post.save
             redirect_to root_path, notice: "Post criado com sucesso!"
         else
@@ -20,15 +24,12 @@ class PostsController < ApplicationController
         end
     end
 
-    def show
-    end
-
     def edit
     end
 
     def update
         if @post.update(post_params)
-            redirect_to post_path(@post), notice: "Post atualizado com sucesso!"
+            redirect_to @post, notice: "Post atualizado com sucesso!"
         else
             render :edit, status: :unprocessable_entity
         end
@@ -46,7 +47,8 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :content)
+        #adicionar :tag_list aos parametros permitidos
+        params.require(:post).permit(:title, :content, :tag_list)
     end
     
     def authorize_user!

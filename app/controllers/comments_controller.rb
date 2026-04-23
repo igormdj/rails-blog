@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
         @comment.user = current_user
 
         if @comment.save
-            redirect_to @post, notice: "Comentário criado com sucesso."
+            redirect_to @post, flash: { success: 'Comentário criado com sucesso.' }
         else
-            redirect_to @post, alert: @comment.errors.full_messages.to_sentence
+            redirect_to @post, flash: { error: @comment.errors.full_messages.to_sentence }
         end
 end
 
@@ -22,7 +22,7 @@ def update
     authorize_comment_owner
 
     if @comment.update(comment_params)
-        redirect_to @post, notice: "Comentário atualizado com sucesso."
+        redirect_to @post, flash: { success: 'Comentário atualizado!' }
     else
         render :edit
     end
@@ -31,7 +31,7 @@ end
 def destroy
     authorize_comment_owner
     @comment.destroy
-    redirect_to @post, notice: "Comentário excluído com sucesso."
+    redirect_to @post, flash: { info: 'Comentário removido!' }
 end
 
 private
@@ -50,7 +50,7 @@ end
 
 def authorize_comment_owner
     unless @comment.user == current_user
-        redirect_to @post, alert: "Você não tem permissão para realizar esta ação."
+        redirect_to @post, flash: { alert: 'Você não tem permissão para isso.' }
     end
 end
 end

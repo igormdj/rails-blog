@@ -354,18 +354,8 @@ h1, h2, h3, h4 {
         </div>
       </div>
 
-      <%# Exibe mensagens flash (notice e alert) %>
-      <% if notice %>
-        <div class="notice">
-          <%= notice %>
-        </div>
-      <% end %>
-      
-      <% if alert %>
-        <div class="alert">
-          <%= alert %>
-        </div>
-      <% end %>
+      <%# Exibe mensagens flash usando partial %>
+      <%= render 'layouts/flash' %>
 
       <%# Conteúdo principal da página %>
       <%= yield %>

@@ -81,3 +81,18 @@ end
 # Uso: formatar_data_i18n(@post.created_at, :long)
 
 end
+
+def icone_para_flash(tipo)
+    case tipo.to_s
+    when 'success', 'notice'
+    '✅'
+    when 'error', 'alert'
+    '❌'
+    when 'warning'
+    '⚠️'
+    when 'info'
+    'ℹ️'
+    else
+    '📌'
+    end
+end

@@ -18,7 +18,7 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
 
         if @post.save
-            redirect_to root_path, notice: "Post criado com sucesso!"
+            redirect_to @post, flash: { success: 'Post criado com sucesso!'}
         else
             render :new, status: :unprocessable_entity
         end
@@ -29,15 +29,16 @@ class PostsController < ApplicationController
 
     def update
         if @post.update(post_params)
-            redirect_to @post, notice: "Post atualizado com sucesso!"
+            redirect_to @post, flash: { success: 'Post atualizado com sucesso!' }
         else
+            flash.now[:warning] = 'Erro ao atualizar post. Verifique os campos.'
             render :edit, status: :unprocessable_entity
         end
     end
 
     def destroy
         @post.destroy
-        redirect_to root_path, notice: "Post excluído com sucesso!", status: :see_other
+        redirect_to root_path, flash: { info: 'Post excluído com sucesso!' }
     end
 
     private
@@ -53,7 +54,7 @@ class PostsController < ApplicationController
     
     def authorize_user!
         unless @post.user == current_user
-            redirect_to posts_path, alert: "Você não tem permissão para isso."
+            redirect_to posts_path, flash: { alert: 'Você não tem permissão para isso.' }
         end
     end
 end

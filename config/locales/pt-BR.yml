@@ -1,14 +1,14 @@
 pt-BR:
-  date:
-    formats:
-      default: "%d/%m/%Y"
-      short: "%d/%b"
-      long: "%d de %B de %Y"
-    day_names: [Domingo, Segunda-feira, Terça-feira, Quarta-feira, Quinta-feira, Sexta-feira, Sábado]
-    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
-  
-  time:
-    formats:
-      default: "%d/%m/%Y %H:%M"
-      short: "%d/%b %H:%M"
-      long: "%A, %d de %B de %Y às %H:%M"
+  devise:
+    sessions:
+      signed_in: 'Login realizado com sucesso!'
+      signed_out: 'Logout realizado com sucesso!'
+    registrations:
+      signed_up: 'Cadastro realizado com sucesso!'
+      updated: 'Dados atualizados com sucesso!'
+      destroyed: 'Conta excluída com sucesso!'
+    passwords:
+      send_instructions: 'Instruções enviadas para seu email!'
+      updated: 'Senha alterada com sucesso!'
+    confirmations:
+      confirmed: 'Email confirmado com sucesso!'

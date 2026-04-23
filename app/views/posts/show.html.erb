@@ -13,7 +13,7 @@
     
   <div class="post-content">
     <p><%= @post.content %></p>
-    <small>Postado em: <%= @post.created_at.strftime("%d/%m/%Y %H:%M") %></small>
+    <small>Postado em: <%= formatar_data_hora(@post.created_at) %></small>
   </div>
 
   <div class="post-actions">

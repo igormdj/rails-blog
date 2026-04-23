@@ -387,3 +387,27 @@ input[type="submit"]:hover {
   transform: scale(1.1);
   background-color: #2980b9;
 }
+
+/* Estilos para posts por idade */
+.post-novo {
+  border-left: 4px solid #2ecc71;
+}
+
+.post-recente {
+  border-left: 4px solid #f39c12;
+}
+
+.post-antigo {
+  border-left: 4px solid #95a5a6;
+}
+
+/* Estilos para comentários */
+.meu-comentario {
+  background-color: #e8f4fd;
+  border-left: 3px solid #3498db;
+}
+
+.outro-comentario {
+  background-color: #f8f9fa;
+  border-left: 3px solid #bdc3c7;
+}

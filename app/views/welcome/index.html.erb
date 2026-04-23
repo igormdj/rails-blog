@@ -71,7 +71,7 @@
           
           <div class="post-meta">
             👤 Publicado por: <strong><%= post.user.email %></strong> | 
-            📅 Criado em: <%= post.created_at.strftime("%d/%m/%Y %H:%M") %>
+            📅 Criado em: <%= formatar_data_hora(post.created_at) %>
           </div>
           
           <div class="post-actions">
